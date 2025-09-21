@@ -1,0 +1,6 @@
+[Unit]
+Description=Radon oneshot band setter
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/radon-band-setter

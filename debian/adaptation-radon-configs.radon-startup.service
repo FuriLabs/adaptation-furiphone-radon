@@ -1,12 +1,12 @@
 [Unit]
-Description=Perform krypton's startup initialization tasks
+Description=Perform radon's startup initialization tasks
 Requires=lxc@android.service
 Before=furios-boot-wlan.service
 After=mtk-wmt-manager.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/krypton-startup
+ExecStart=/usr/libexec/radon-startup
 
 [Install]
 WantedBy=multi-user.target
