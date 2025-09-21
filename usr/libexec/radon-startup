@@ -17,8 +17,7 @@ else
     swapon -p -3 /dev/zram0
 fi
 
-# Allow FuriOS user to access touchscreen nodes and flashlight
-[ -e "/sys/kernel/furilabs/palmrejectionmode/common_node/" ] && chown furios:furios /sys/kernel/furilabs/palmrejectionmode/common_node/*mode
+# Allow FuriOS user to access flashlight
 [ -e "/sys/class/flashlight/mt-flash-led1/" ] && chown furios:furios /sys/class/flashlight/mt-flash-led1/*
 [ -e "/sys/class/flashlight/mt-flash-led2/" ] && chown furios:furios /sys/class/flashlight/mt-flash-led2/*
 
@@ -49,7 +48,6 @@ done
 chown furios:furios /sys/class/leds/vibrator/*
 
 # Allow to access brightness nodes
-[ -e "/sys/class/leds/green/" ] && chown furios:furios /sys/class/leds/green/*
 [ -e "/sys/class/flashlight_core/flashlight/" ] && chown furios:furios /sys/class/flashlight_core/flashlight/*
 [ -e "/sys/class/leds/lcd-backlight/" ] && chown furios:furios /sys/class/leds/lcd-backlight/*
 
