@@ -16,7 +16,7 @@ Conflicts: adaptation-vendor-device
 Architecture: arm64
 Pre-Depends: linux-bootimage-furiphone-radon,
              linux-image-furiphone-radon,
-#             radon-vendor-32 (>= 9),
+             radon-vendor-32,
              mtk-wifi-manager,
 Depends: ${misc:Depends},
          adaptation-hybris-api32-phone,
@@ -26,7 +26,7 @@ Depends: ${misc:Depends},
          assistant-button,
          ofono-binder-plugin-ext-mtk,
 #         radon-factory-image,
-#         radon-modem-image,
+         radon-modem-image,
 Essential: yes
 Description: adaptation-furiphone-radon - meta
  FuriPhone FLX1 api32 adaptation metapackage
@@ -35,7 +35,7 @@ Package: adaptation-radon-configs
 Architecture: arm64
 Pre-Depends: linux-bootimage-furiphone-radon,
              linux-image-furiphone-radon,
-#             radon-vendor-32 (>= 9),
+             radon-vendor-32,
 Depends: ${misc:Depends}, ${shlibs:Depends},
          bsdextrautils,
          e2fsprogs,
