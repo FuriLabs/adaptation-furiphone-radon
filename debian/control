@@ -27,7 +27,7 @@ Depends: ${misc:Depends},
          assistant-button,
          ofono-binder-plugin-ext-mtk,
 #         radon-factory-image,
-         radon-modem-image,
+#         radon-modem-image,
 Description: adaptation-furiphone-radon - meta
  FuriPhone FLX1 api32 adaptation metapackage
 
