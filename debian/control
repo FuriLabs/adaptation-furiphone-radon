@@ -11,9 +11,9 @@ Vcs-Browser: https://github.com/furilabs/adaptation-furiphone-radon
 Vcs-Git: https://github.com/furilabs/adaptation-furiphone-radon.git
 
 Package: adaptation-furiphone-radon
-Provides: adaptation-vendor-device
-Conflicts: adaptation-vendor-device
-Replaces: adaptation-vendor-device
+#Provides: adaptation-vendor-device
+#Conflicts: adaptation-vendor-device
+#Replaces: adaptation-vendor-device
 Architecture: arm64
 Pre-Depends: linux-bootimage-furiphone-radon,
              linux-image-furiphone-radon,
@@ -28,7 +28,7 @@ Depends: ${misc:Depends},
          ofono-binder-plugin-ext-mtk,
 #         radon-factory-image,
          radon-modem-image,
-Essential: yes
+#Essential: yes
 Description: adaptation-furiphone-radon - meta
  FuriPhone FLX1 api32 adaptation metapackage
 
