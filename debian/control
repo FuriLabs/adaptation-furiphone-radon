@@ -11,9 +11,9 @@ Vcs-Browser: https://github.com/furilabs/adaptation-furiphone-radon
 Vcs-Git: https://github.com/furilabs/adaptation-furiphone-radon.git
 
 Package: adaptation-furiphone-radon
-Provides: adaptation-vendor-device
-Conflicts: adaptation-vendor-device
-Replaces: adaptation-vendor-device
+#Provides: adaptation-vendor-device
+#Conflicts: adaptation-vendor-device
+#Replaces: adaptation-vendor-device
 Architecture: arm64
 Pre-Depends: linux-bootimage-furiphone-radon,
              linux-image-furiphone-radon,
