@@ -1,0 +1,64 @@
+#!/bin/bash
+
+IFACE="$1"
+ACTION="$2"
+
+STA_IF="wlan0"
+AP_CONN="Hotspot"
+
+[ "$IFACE" = "$STA_IF" ] || exit 0
+[ "$ACTION" = "up" ] || exit 0
+
+FREQ=$(iw dev "$STA_IF" link | awk '/freq:/ {print int($2)}')
+[ -z "$FREQ" ] && exit 0
+
+# Wi-Fi channel mapping:
+#
+# IEEE 802.11 channel numbers are derived from center frequency.
+# Most Wi-Fi channels are spaced in 5 MHz steps.
+#
+# 2.4 GHz:
+#   channel = (frequency_MHz - 2407) / 5
+#   example: 2412 MHz -> (2412 - 2407) / 5 = 1
+#
+# 5 GHz:
+#   channel = (frequency_MHz - 5000) / 5
+#   example: 5785 MHz -> (5785 - 5000) / 5 = 157
+#
+# Special case:
+#   2484 MHz = channel 14
+if [ "$FREQ" -lt 3000 ]; then
+    NEW_BAND="bg"
+
+    if [ "$FREQ" -eq 2484 ]; then
+        NEW_CHANNEL=14
+    else
+        NEW_CHANNEL=$(( (FREQ - 2407) / 5 ))
+    fi
+else
+    NEW_BAND="a"
+    NEW_CHANNEL=$(( (FREQ - 5000) / 5 ))
+fi
+
+OLD_BAND=$(nmcli -g 802-11-wireless.band connection show "$AP_CONN")
+OLD_CHANNEL=$(nmcli -g 802-11-wireless.channel connection show "$AP_CONN")
+
+logger -t hotspot-channel "STA freq=$FREQ -> band=$NEW_BAND channel=$NEW_CHANNEL; old band=$OLD_BAND channel=$OLD_CHANNEL"
+
+if [ "$OLD_BAND" = "$NEW_BAND" ] && [ "$OLD_CHANNEL" = "$NEW_CHANNEL" ]; then
+    logger -t hotspot-channel "Hotspot profile already matches; no action needed"
+    exit 0
+fi
+
+nmcli connection modify "$AP_CONN" 802-11-wireless.band "$NEW_BAND" 802-11-wireless.channel "$NEW_CHANNEL"
+
+if nmcli -t -f NAME connection show --active | grep -Fxq "$AP_CONN"; then
+    logger -t hotspot-channel "Hotspot active and channel changed; restarting AP"
+
+    nmcli connection down "$AP_CONN"
+    nmcli connection up "$AP_CONN"
+else
+    logger -t hotspot-channel "Hotspot inactive; updated profile"
+fi
+
+exit 0
