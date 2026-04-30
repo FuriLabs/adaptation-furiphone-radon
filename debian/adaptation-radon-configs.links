@@ -24,4 +24,3 @@
 /dev/null /etc/systemd/system/atopacct.service
 /dev/null /etc/systemd/system/atop.service
 /dev/null /etc/systemd/system/nfcd.service
-/dev/null /etc/systemd/system/biomd.service
