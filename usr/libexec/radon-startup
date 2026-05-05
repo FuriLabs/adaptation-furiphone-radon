@@ -181,5 +181,7 @@ mount -t cgroup -o schedtune stune /sys/fs/cgroup/schedtune
 [ -f /proc/gpufreq/gpufreq_opp_stress_test ] && echo 0 > /proc/gpufreq/gpufreq_opp_stress_test
 [ -f /proc/ppm/enabled ] && echo 0 > /proc/ppm/enabled # messes up cpu scaling frequency and offline cores
 [ -f /proc/m4u_dbg/log_level ] && echo 0 > /proc/m4u_dbg/log_level
+[ -f /sys/bus/spi/drivers/fts_ts/spi0.0/fts_glove_mode ] && echo 1 > /sys/bus/spi/drivers/fts_ts/spi0.0/fts_glove_mode
+[ -f /sys/bus/spi/drivers/fts_ts/spi0.0/fts_edgepalm_mode ] && echo 0 > /sys/bus/spi/drivers/fts_ts/spi0.0/fts_edgepalm_mode
 
 exit 0
