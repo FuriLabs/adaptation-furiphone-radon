@@ -26,6 +26,7 @@ Depends: ${misc:Depends},
          gsd-adapter,
          assistant-button,
          ofono-binder-plugin-ext-mtk,
+         pulseaudio-module-audio-manager,
 #         radon-factory-image,
          radon-modem-image,
 Description: adaptation-furiphone-radon - meta
